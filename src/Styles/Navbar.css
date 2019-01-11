@@ -1,0 +1,22 @@
+.navbar_container {
+    height: 50px;
+    position: relative;
+    background: #ddd;
+    padding: 5px;
+    padding-left: 50px;
+    display: grid;
+    align-items: center;
+    grid-template: 1fr / repeat(2, 1fr);
+}
+
+.navbar_container .ProfileAvatar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 50px;
+    cursor: pointer;
+}
+.navbar_container .userIcon {
+    margin-left: 10px;
+}

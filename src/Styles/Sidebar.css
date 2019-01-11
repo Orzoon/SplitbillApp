@@ -1,0 +1,17 @@
+.sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background: #eee;
+}
+
+.sidebar ul li {
+    border-bottom: .5px solid rgba(0,0,0,.4);
+    cursor: pointer;
+    padding: 5px 10px;
+}

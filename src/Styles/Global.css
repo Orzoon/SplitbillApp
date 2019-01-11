@@ -1,0 +1,13 @@
+*,*:before, *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+}
+.contentFixer {
+    display: grid;
+    height: calc(100vh - 50px);
+    grid-template: 1fr / 150px 1fr;
+}
