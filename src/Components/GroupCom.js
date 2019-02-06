@@ -19,7 +19,7 @@ const SingleGroup = (props) => {
                  <Link to = {`group/${props.id}`}><button>view</button></Link>
                  {/*<button onClick = {() =>  {props.viewGroupHandler(props.id)}}>view</button>*/}
                  <button >remove</button>
-            </div>)
+            </div>);
 }
 
 export default class GroupCom extends Component {
