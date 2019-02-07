@@ -3,11 +3,13 @@ import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import { GROUP } from '../shared/group.js';
 import { BILLS } from '../shared/bill.js';
 import Navbar from './Navbar';
-import Sidebar from './Sidebar';
 import GroupCom from './GroupCom';
 import IndGroup from './IndGroup';
 
+
 import '../Styles/Global.css';
+import SideNavTrial from './SideNavTrial.js';
+
 
 
 
@@ -17,12 +19,6 @@ class HomeComponent extends Component
         super(props);
         this.state = {
           loading: true,
-          sideLinks: {
-            groups: [],
-            friends: [],
-            about: 'about splitZone',
-            something: 'something'
-          },
           // individual group scenario
           group: GROUP,
           bills: BILLS
@@ -32,13 +28,13 @@ class HomeComponent extends Component
 
         render() 
         {
-            const { sideLinks } = this.state;
             return (
               <Router>
                 <div>
                   <Navbar />
                   <div className = "contentFixer">
-                    <Sidebar sideLinks = {sideLinks}/>
+  
+                  <SideNavTrial id="TrialSideBar"/>
                     <Switch>
                       <Route path = '/groups'  exact={true} render = {(props) => <GroupCom group = {this.state.group} {...props}/>}/>
                       <Route path = '/group/:groupId' exact ={true} render = {(props) => <IndGroup bills = {this.state.bills} {...props}/>}/>
