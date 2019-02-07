@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import { Card, CardBody, CardTitle, CardSubtitle, Button, CardText} from 'reactstrap';
 import '../Styles/GroupCom.css';
 import { Link } from 'react-router-dom';
 
@@ -6,10 +7,8 @@ const List = (props) => {
     return <li>{props.list}</li>
 }
 const SingleGroup = (props) => {
-    const friendList = props.friends.map((friend,index) => {
-        return <List key = {index} list = {friend} />
-    })
-    return (<div className = 'singleGroup'>
+    /*
+    <div className = 'singleGroup container'>
                 <h1>{props.name}</h1>
                 <h3>{props.dateCreated}</h3>
                 <h3>{props.category}</h3>
@@ -17,9 +16,27 @@ const SingleGroup = (props) => {
                     {friendList}
                  </ul>
                  <Link to = {`group/${props.id}`}><button>view</button></Link>
-                 {/*<button onClick = {() =>  {props.viewGroupHandler(props.id)}}>view</button>*/}
-                 <button >remove</button>
-            </div>);
+                 {/*<button onClick = {() =>  {props.viewGroupHandler(props.id)}}>view</button>*/
+                 /*<button >remove</button>
+            </div>
+    */ 
+    const friendList = props.friends.map((friend,index) => {
+        return <List key = {index} list = {friend} />
+    })
+    return (
+        <Card>
+            <CardTitle>{props.name}</CardTitle>
+            <CardBody>
+            {props.dateCreated}
+            {props.category}
+            {friendList}
+            <Link to = {`group/${props.id}`}><button>view</button></Link>
+            <button >remove</button>
+
+
+            </CardBody>
+        </Card>
+    );
 }
 
 export default class GroupCom extends Component {

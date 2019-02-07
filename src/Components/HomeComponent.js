@@ -32,18 +32,25 @@ class HomeComponent extends Component
               <Router>
                 <div>
                   <Navbar />
-                  <div className = "contentFixer">
-  
-                  <SideNavTrial id="TrialSideBar"/>
-                    <Switch>
-                      <Route path = '/groups'  exact={true} render = {(props) => <GroupCom group = {this.state.group} {...props}/>}/>
-                      <Route path = '/group/:groupId' exact ={true} render = {(props) => <IndGroup bills = {this.state.bills} {...props}/>}/>
-                      <Route path = "*" component = {() => {
-                        return <h1>Page not found</h1>
-                      }} />
-                    </Switch>
+                  <div className="row">
+                      <div className = "col-sm-2">
+      
+                        <SideNavTrial id="TrialSideBar"/>
+                      </div>
+                      
+                        <div className=" col-lg-10 col-sm-4  ">
+                        <Switch>
+                          
+                          <Route path = '/groups'  exact={true} render = {(props) => <GroupCom group = {this.state.group} {...props}/>}/>
+                          <Route path = '/group/:groupId' exact ={true} render = {(props) => <IndGroup bills = {this.state.bills} {...props}/>}/>
+                          <Route path = "*" component = {() => {
+                            return <h1>Page not found</h1>
+                          }} />
+                        </Switch>
+                        </div>
+                    </div>
                   </div>
-                </div>
+                
               </Router>
             );
           }

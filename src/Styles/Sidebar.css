@@ -20,4 +20,7 @@
 #TrialSideBar
 {
     display: none;
+    width: 100%;
+ 
+    color: firebrick;
 }

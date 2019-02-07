@@ -17,27 +17,17 @@ class Navbar extends Component {
     
     }
 
-    SideBarNavDisplay()
-    {
-        document.getElementById("TrialSideBar").style.display = "block";
-    }
-
-    SideBarNavHide()
-    {
-        document.getElementById("TrialSideBar").style.display = "none";
-    }
-
 
     toggleSideBar()
     {
         if (this.state.isNavOpen===false)
            { 
-               this.SideBarNavDisplay();
+            document.getElementById("TrialSideBar").style.display = "block";
                this.setState({isNavOpen:true});
         
         }
         else    
-          {  this.SideBarNavHide();
+          {  document.getElementById("TrialSideBar").style.display = "none";
             this.setState({isNavOpen:false})        
         }
     }
