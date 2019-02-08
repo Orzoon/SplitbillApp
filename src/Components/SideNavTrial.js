@@ -1,6 +1,7 @@
 import React, {Component} from 'react' ;
-
+import '../Styles/Sidebar.css';
 import Sidebar from './Sidebar';
+
 
 class SideNavTrial extends Component{
 
@@ -18,13 +19,25 @@ class SideNavTrial extends Component{
          }
     }
 
+    
+    closeNav()
+    {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+  
+
     render()
     {
-     
         return(
-            <div id="TrialSideBar">
-                    <Sidebar sideLinks={this.state.sideLinks}/>
-            </div>  
+            <div id ="mySidenav" class="sidenav">
+             {/*{<Sidebar sideLinks={this.state.sideLinks}/>*/}
+                <a href="javascript:void(0)" class="closebtn" onClick={this.closeNav}>&times;</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+           </div>
         );
     }
 

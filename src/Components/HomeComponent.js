@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import { GROUP } from '../shared/group.js';
 import { BILLS } from '../shared/bill.js';
+
 import Navbar from './Navbar';
 import GroupCom from './GroupCom';
 import IndGroup from './IndGroup';
@@ -35,7 +36,7 @@ class HomeComponent extends Component
                   <div className="row">
                       <div className = "col-sm-2">
       
-                        <SideNavTrial id="TrialSideBar"/>
+                        <SideNavTrial/>
                       </div>
                       
                         <div className=" col-lg-10 col-sm-4  ">

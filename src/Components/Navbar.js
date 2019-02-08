@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { ProfileAvatar} from './Functional';
-import { FaUser } from 'react-icons/fa';
-import '../Styles/Navbar.css';
-import '../Styles/Sidebar.css';
-import SideNavTrial from './SideNavTrial';
 
 class Navbar extends Component {
     constructor(props)
@@ -22,13 +18,16 @@ class Navbar extends Component {
     {
         if (this.state.isNavOpen===false)
            { 
-            document.getElementById("TrialSideBar").style.display = "block";
+            document.getElementById("mySidenav").style.width = "250px";
+            
                this.setState({isNavOpen:true});
         
         }
         else    
-          {  document.getElementById("TrialSideBar").style.display = "none";
-            this.setState({isNavOpen:false})        
+          {  
+            document.getElementById("mySidenav").style.width = "0";
+            
+            this.setState({ isNavOpen:false})        ;
         }
     }
 
