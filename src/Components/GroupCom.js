@@ -27,13 +27,11 @@ const SingleGroup = (props) => {
         <Card>
             <CardTitle>{props.name}</CardTitle>
             <CardBody>
-            {props.dateCreated}
-            {props.category}
-            {friendList}
-            <Link to = {`group/${props.id}`}><button>view</button></Link>
-            <button >remove</button>
-
-
+                {props.dateCreated}
+                {props.category}
+                {friendList}
+                <Link to = {`group/${props.id}`}><button>view</button></Link>
+                <button >remove</button>
             </CardBody>
         </Card>
     );
@@ -44,7 +42,7 @@ export default class GroupCom extends Component {
     render () {
         const {pathname} = this.props.location;
        // const { friends,name, dateCreated, category, id } = this.props.group[0];
-       const { group } = this.props;
+        const { group } = this.props;
         return (
             <div className="groupComContainer">
             {group.map((individualObj) => {

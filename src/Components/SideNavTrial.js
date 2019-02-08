@@ -1,5 +1,6 @@
 import React, {Component} from 'react' ;
 import '../Styles/Sidebar.css';
+import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 
@@ -33,9 +34,10 @@ class SideNavTrial extends Component{
             <div id ="mySidenav" class="sidenav">
              {/*{<Sidebar sideLinks={this.state.sideLinks}/>*/}
                 <a href="javascript:void(0)" class="closebtn" onClick={this.closeNav}>&times;</a>
+                <Link to = {`/groups`}>Groups</Link>
+                <Link to = {`/home`}>Home</Link>
+                <a href="#">Friends</a>
                 <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
                 <a href="#">Contact</a>
            </div>
         );

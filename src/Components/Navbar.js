@@ -6,11 +6,9 @@ class Navbar extends Component {
     {
         super(props);
         this.state ={
-        isNavOpen:false,    
-            };
+                    isNavOpen:false,    
+                    };
         this.toggleSideBar = this.toggleSideBar.bind(this);
-    
-    
     }
 
 
@@ -27,7 +25,7 @@ class Navbar extends Component {
           {  
             document.getElementById("mySidenav").style.width = "0";
             
-            this.setState({ isNavOpen:false})        ;
+            this.setState({ isNavOpen:false});
         }
     }
 
