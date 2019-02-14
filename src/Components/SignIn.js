@@ -21,18 +21,14 @@ import '../Styles/homepage.css';
             this.state ={
                 isModalOpen:false,
                 isSignUpOpen:false,
-                
-                SignIn:{
+                     
                     firstname:'',
                     lastname:'',
                     username:'',
                     email:'',
                     gender:'',
                     password:'',
-                    password2:''
-                },
-
-               
+                    password2:'',    
                     login_username:'',
                     login_password:'',
                 
@@ -61,7 +57,7 @@ import '../Styles/homepage.css';
             this.handleBlur_Login= this.handleBlur_Login.bind(this);
     }
     
-    validate_signIn(firstname, lastname, telnum,username, email,password1,password2,gender) 
+   /* validate_signIn(firstname, lastname, telnum,username, email,password1,password2,gender) 
     {
 
         const errors = {
@@ -70,7 +66,7 @@ import '../Styles/homepage.css';
             telnum: '',
             email: ''
         };
-    }
+    }*/
 
     validate_Login(username,password)
     {
@@ -100,10 +96,62 @@ import '../Styles/homepage.css';
             
     }
 
+    validate_SignIn(firstname,lastname,username,password1,password2,email,gender)
+    {
+        
+       
+        const errors={
+            firstname:'',
+            lastname:'',
+            username:'',
+            password1:'',
+            password2:'',
+            email:'',
+            gender:''
+        };
+
+        if (this.state.SignIn_touched.firstname&&firstname.length<=3)
+           { 
+               errors.firstname='Firstname needs to be greater than three characters';
+               console.log(this.state.firstname);
+        }
+        
+        if (this.state.SignIn_touched.lastname&& lastname.length<=3)
+          {  errors.lastname='Lastname needs to be greater than three characters';
+          console.log(this.state.SignIn_touched.lastname);
+        }
+        if (this.state.SignIn_touched.username && username.length <=3)
+            errors.username ='Username needs to be greater than three characters';
+        
+           const reg =/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        if (this.state.SignIn_touched.password && !reg.test(password1))
+            {errors.password1 = 'Password should have atleast one number and a special character with 8 characters long';
+        console.log(password1);}
+            
+
+        if(password1!==password2)
+            errors.password2='Passwords donot match';
+
+        const regem=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (this.state.SignIn_touched.email && !regem.test(email))
+            errors.email ="Please enter a valid email";
+
+
+        return errors;
+
+    }
+
     handleBlur_Login = (field) => (evt) =>{
         this.setState({
                 Login_touched: { ...this.state.Login_touched, [field]:true},
             });
+    }
+
+    handleBlur_SignIn= (field) => (evt) =>{
+        this.setState({
+            SignIn_touched:{...this.state.SignIn_touched, [field]:true},
+
+        });
     }
 
     handleInputChange(event){
@@ -118,6 +166,8 @@ import '../Styles/homepage.css';
         });
 
     }
+
+  
 
     toggleModal()
     {
@@ -145,6 +195,8 @@ import '../Styles/homepage.css';
     render()
     {
         const errors = this.validate_Login(this.state.login_username,this.state.login_password);
+        
+       const errorssignIn= this.validate_SignIn(this.state.firstname,this.state.lastname,this.state.username,this.state.password,this.state.password2,this.state.email,this.state.gender);
         return(
             < >
                <Card className="container" id="logo">
@@ -190,20 +242,17 @@ import '../Styles/homepage.css';
                             <Label htmlFor ="login_password">Password</Label>
                             <Input type ="text" id="login_password" name="login_password"
                                  placeholder="Password"
+                                 value={this.state.login_password}
                                  valid={errors.password === ''}
                                  invalid={errors.username !== ''}
-                                 value={this.state.login_password}
                                  onBlur={this.handleBlur_Login('password')}
                                  onChange={this.handleInputChange}/>
                             
                             <FormFeedback>{errors.password}</FormFeedback>
                         </FormGroup>
-
-                       
-
                         </Form>
                         <FormGroup>
-                        Don't Have an account yet.  
+                            Don't Have an account yet.  
                         <div className="float-right">
                            <NavLink href="#" onClick={this.toggleSignUp }>Sign Up</NavLink>
                           </div>
@@ -219,32 +268,81 @@ import '../Styles/homepage.css';
                     <ModalBody>
                         <Form onSubmit = {this.handleSignIn}>
                             <FormGroup>
-                                <Label htmlFor ="fname">First Name</Label>
-                                <Input type ="text" id="fname" name="fname"
-                                    innerRef ={(input)=>this.fname = input}/>
+                                <Label htmlFor ="firstname">First Name</Label>
+                                <Input type ="text" id="firstname" name="firstname"
+                                    placeholder="Firstname"
+                                    value={this.state.firstname}  
+                                    valid ={errorssignIn.firstname ===''}
+                                    invalid={errorssignIn.firstname !==''}             
+                                    onBlur={this.handleBlur_SignIn('firstname')}
+                                    onChange={this.handleInputChange}
+                                    />
+
+                                <FormFeedback>{errorssignIn.firstname}</FormFeedback>
                             </FormGroup>
                             <FormGroup>
-                                <Label htmlFor ="lname">Last Name</Label>
-                                <Input type ="text" id="lname" name="lname"
-                                    innerRef ={(input)=>this.lname = input}/>
+                                <Label htmlFor ="lastname">Last Name</Label>
+                                <Input type ="text" id="lastname" name="lastname"
+                                    placeholder="LastName"
+                                    value={this.state.lastname}  
+                                    valid ={errorssignIn.lastname ===''}
+                                    invalid={errorssignIn.lastname !==''}             
+                                    onBlur={this.handleBlur_SignIn('lastname')}
+                                    onChange={this.handleInputChange}/>
+                           
+                            <FormFeedback>{errorssignIn.lastname}</FormFeedback>
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor ="username">UserName</Label>
                                 <Input type ="text" id="username" name="username"
-                                    innerRef ={(input)=>this.username = input}/>
-                            </FormGroup>
+                                     placeholder="LastName"
+                                     value={this.state.username}  
+                                     valid ={errorssignIn.username ===''}
+                                     invalid={errorssignIn.username !==''}             
+                                     onBlur={this.handleBlur_SignIn('username')}
+                                     onChange={this.handleInputChange}/>
+                            
+                             <FormFeedback>{errorssignIn.username}</FormFeedback>
+                             </FormGroup>
+
+                             <FormGroup>
+                                <Label htmlFor ="email">Email</Label>
+                                <Input type ="email" id="email" name="email"
+                                     placeholder="Email"
+                                     value={this.state.email}  
+                                     valid ={errorssignIn.email ===''}
+                                     invalid={errorssignIn.email !==''}             
+                                     onBlur={this.handleBlur_SignIn('email')}
+                                     onChange={this.handleInputChange}/>
+                            
+                             <FormFeedback>{errorssignIn.email}</FormFeedback>
+                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor ="password">Password</Label>
                                 <Input type ="text" id="password" name="password"
-                                    innerRef ={(input)=>this.password = input}/>
+                                    placeholder="Password"
+                                    value={this.state.password}  
+                                    valid ={errorssignIn.password1 ===''}
+                                    invalid={errorssignIn.password1 !==''}             
+                                    onBlur={this.handleBlur_SignIn('password')}
+                                    onChange={this.handleInputChange}/>
+                           
+                            <FormFeedback>{errorssignIn.password1}</FormFeedback>
                             </FormGroup>
 
                             <FormGroup>
                                 <Label htmlFor ="password2">Confirm Password</Label>
                                 <Input type ="text" id="password2" name="password2"
-                                    innerRef ={(input)=>this.password2 = input}/>
+                                    placeholder="Password"
+                                    value={this.state.password2}  
+                                    valid ={errorssignIn.password2 ===''}
+                                    invalid={errorssignIn.password2 !==''}             
+                                    onBlur={this.handleBlur_SignIn('password2')}
+                                    onChange={this.handleInputChange}/>
+
+                                 <FormFeedback>{errorssignIn.password2}</FormFeedback>
                             </FormGroup>
-                    
+                          
                                 <Label htmlFor ="gender">Gender</Label>
                             <Col sm={10}>  
                 
